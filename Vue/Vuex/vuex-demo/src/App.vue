@@ -16,7 +16,7 @@ export default {
     },
     components: {
         "my-addition": Addition,
-        "my-subtraction": Subtraction
-    }
+        "my-subtraction": Subtraction,
+    },
 }
 </script>
