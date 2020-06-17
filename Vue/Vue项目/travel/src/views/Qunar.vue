@@ -1,9 +1,17 @@
 <template>
-    <div>
-        我是去哪儿页面
+    <div class="Quner-content">
+        <Header></Header>
     </div>
 </template>
 
 <script>
-
+    import Header from '../components/Qunar/Header'
+    export default {
+        data(){
+            return {}
+        },
+        components: {
+            Header
+        }
+    }
 </script>
