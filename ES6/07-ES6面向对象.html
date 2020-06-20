@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>面向对象</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        
+        class Users {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+            sum() {
+                return this.x + this.y;
+            }
+        }
+
+        let user = new Users(13, 12);
+
+        console.log(user.sum())
+
+        class Sons extends Users {
+            constructor(x, y) {
+                super(x, y); // 
+            }
+        }
+
+        let son = new Sons(3, 6);
+
+        console.log(son.sum());
+
+    </script>
+</body>
+
+</html>

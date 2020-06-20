@@ -151,3 +151,110 @@ console.log(result2);
 ```
 
 4. forEach (循环)
+
+### 字符串
+* startsWith 返回布尔值，表示参数字符串是否在原字符串的头部。
+* endsWith 返回布尔值，表示参数字符串是否在原字符串的尾部。
+* 字符串模板 （``）
+
+### ES6面向对象 
+1. class关键字、构造器和类分开了
+2. class里面直接加方法
+
+```
+// 老版面向对象
+function Users(name, pass) {
+    this.name = name;
+    this.pass = pass;
+}
+Users.prototype.showName = function () {
+    console.log(this.name);
+}
+Users.prototype.showPass = function () {
+    console.log(this.pass);
+}
+
+let user = new Users('zhangsan', '123456');
+user.showName();
+user.showPass();
+
+console.log('---------------------');
+
+function VipUsers(name, pass, level) {
+    Users.call(this, name, pass);
+
+    this.level = level;
+}
+
+VipUsers.prototype = new Users();
+VipUsers.prototype.constructor = VipUsers;
+
+VipUsers.prototype.showLevel = function () {
+    console.log(this.level);
+}
+
+let vl = new VipUsers('lisi', '654321', 5);
+
+vl.showName();
+vl.showPass();
+vl.showLevel();
+```
+```
+// ES6
+class Users {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    sum() {
+        return this.x + this.y;
+    }
+}
+
+let user = new Users(13, 12);
+
+console.log(user.sum())
+
+class Sons extends Users { // extends 继承
+    constructor(x, y) {
+        super(x, y); // ES6 要求，子类的构造函数必须执行一次 super 函数，否则会报错。
+    }
+}
+
+let son = new Sons(3, 6);
+
+console.log(son.sum());
+```
+
+### JSON
+1. JSON对象 (简写：名字一样，方法一样)
+
+* json的标准写法
+1. 只能用双引号
+2. 所有名字都必须用引号包起来
+```
+{a: 1, b: 2} //错误
+{"a": 1, "b": 2} //周期
+```
+```
+// encodeURIComponent() 函数可把字符串作为 URI 组件进行编码。
+// JSON.stringify() 将对象或者数组转换为一个JSON字符串
+let json = { a: 13, b: 15 };
+let str = "https://baidu.com/path/user?data=" + encodeURIComponent(JSON.stringify(json));
+
+// JSON.parse()  将字符串转换成对象
+let str1 = '{"a": 12, "b": 15, "c": "abc"}';
+let json1 = JSON.parse(str1);
+```
+* 简写
+
+```
+// 名字跟值(key和value)一样的  留一个就行
+handleData: handleData 简写 handleData
+// 方法简写  :function一块删
+show: function(){...} 简写 show(){...}
+```
+
+### Promise
+* 异步： 操作之间没啥关系，同时进行多个操作
+* 同步： 同时只能做一件事

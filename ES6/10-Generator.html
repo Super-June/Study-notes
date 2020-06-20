@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator</title>
+</head>
+<body>
+    <script>
+        // Generator
+        function *show(){
+
+            alert("a");
+
+            let aNum = yield;
+
+            console.log(aNum);
+
+            alert("b");
+        }
+
+        let genObj = show();
+
+        genObj.next(12); // a 第一个yield没法给yield传参
+        genObj.next(5); // b
+        
+    </script>
+</body>
+</html>

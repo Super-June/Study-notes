@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script>
+        // Promise （一个请求）
+        {
+            let promises = new Promise(function (resolve, reject) { // resolve 成功  reject 失败拒绝
+                $.ajax({
+                    type: "GET",
+                    url: "https://tcc.taobao.com/cc/json/mobile_tel_segment.htm", // 查询号码归属地
+                    data: {
+                        tel: 18888888888
+                    },
+                    dataType: "jsonp", // 解决跨域
+                    success: function (response) {
+                        // console.log(response);
+                        resolve(response);
+                    },
+                    error(error) {
+                        reject(error)
+                    }
+                });
+            })
+
+            promises.then(function (res) {
+                console.warn("==========Promise 单个请求===========");
+                console.log("成功");
+                console.log(res);
+            }, function (err) {
+                console.log("失败");
+                console.log(err)
+            })
+        }
+
+        // promise all （多个都请求成功）
+        {
+            function promiseAjax(type,url,data,dataType = "json"){ // 调用 Promise 公共方法
+                // console.log(type,url,data,dataType);
+                return new Promise(function(resolve,reject) {
+                    $.ajax({
+                        type,url,data,dataType,
+                        success(response) {
+                            resolve(response);
+                        },
+                        error(error){
+                            reject(error);
+                        }
+                    });
+                })
+            }
+
+            let promise1 = promiseAjax(
+                "GET",
+                "https://tcc.taobao.com/cc/json/mobile_tel_segment.htm",
+                {"tel": 18888888888},
+                "jsonp"
+            );
+            let promise2 = promiseAjax(
+                "GET",
+                "https://api.apiopen.top/getJoke",
+                {"page": 1,"count": 2}
+            );
+
+            Promise.all([
+                promise1,
+                promise2
+            ]).then(function(res){ // 都成功就会执行这个
+                console.warn("==========将Promise提取到公共函数体===========");
+                console.log("两个请求都成功了");
+                console.log(res);
+                let [data1,data2] = res; // 解析赋值
+                console.log(data1);
+                console.log(data2);
+            },function(err){ // 有一个不成功就会执行这个
+                console.log("至少一个请求不成功");
+                console.log(err);
+            })
+        }
+
+        // 新版 jquery的ajax已经有Promise
+        {
+            Promise.all([
+                cun$.ajax({
+                    type: "GET",
+                    url: "https://tcc.taobao.com/cc/json/mobile_tel_segment.htm",
+                    data: {
+                        "tel": 18888888888
+                    },
+                    dataType: "jsonp"
+                }),
+                $.ajax({
+                    type: "GET",
+                    url: "https://api.apiopen.top/getJoke",
+                    data: {
+                        page: 1,
+                        count: 2
+                    },
+                    dataType: "json"
+                })
+            ]).then(function(res){
+                console.warn("==========新ajax已经有了Promise特性===========");
+                console.log("请求都成功了");
+                let [data1,data2] = res;
+                console.log(data1,data2);
+            },function(err){
+                console.log("至少有一个不成功");
+                console.log(err);
+            })
+        }
+
+        {
+            // Promise.race() // 哪个接口快走哪个接口
+            Promise.race([
+                // 3个接口，哪个请求接口快走哪个
+                $.ajax(),
+                $.ajax(),
+                $.ajax()
+            ]).then(function(res){
+                console.log("成功了");
+            },function(err){
+                console.log("不成功");
+            })
+        }
+
+    </script>
+</body>
+
+</html>

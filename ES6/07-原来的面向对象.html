@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>面向对象</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        // 老版面向对象
+        function Users(name, pass) {
+            this.name = name;
+            this.pass = pass;
+        }
+        Users.prototype.showName = function () {
+            console.log(this.name);
+        }
+        Users.prototype.showPass = function () {
+            console.log(this.pass);
+        }
+
+        let user = new Users('zhangsan', '123456');
+        user.showName();
+        user.showPass();
+
+        console.log('---------------------');
+
+        function VipUsers(name, pass, level) {
+            Users.call(this, name, pass);
+
+            this.level = level;
+        }
+
+        VipUsers.prototype = new Users();
+        VipUsers.prototype.constructor = VipUsers;
+
+        VipUsers.prototype.showLevel = function () {
+            console.log(this.level);
+        }
+
+        let vl = new VipUsers('lisi', '654321', 5);
+
+        vl.showName();
+        vl.showPass();
+        vl.showLevel();
+
+    </script>
+</body>
+
+</html>
