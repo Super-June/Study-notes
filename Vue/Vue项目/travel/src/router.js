@@ -12,11 +12,11 @@ export default new Router({
         },
         {
             path: '/qunar',
-            component: () => import('./views/Qunar.vue')
+            component: () => import('@/views/Qunar.vue')
         },
         {
             path: '/douban',
-            component: () => import('./views/Douban.vue')
+            component: () => import('@/views/Douban.vue')
         },
         {
             path: '*',
