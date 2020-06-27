@@ -12,7 +12,7 @@
 <script>
     export default {
         // 这里有swiper组件 不能取相同
-        name: "QSwiper",
+        name: "HomeSwiper",
         data(){
             return {
                 swiperOptions: {

@@ -1,23 +1,23 @@
 <template>
     <div class="Quner-content">
-        <Header></Header>
-        <Swiper></Swiper>
-        <Icons></Icons>
+        <HomeHeader></HomeHeader>
+        <HomeSwiper></HomeSwiper>
+        <HomeIcons></HomeIcons>
     </div>
 </template>
 
 <script>
-    import Header from '@/components/Qunar/Header'
-    import Swiper from '@/components/Qunar/Swiper'
-    import Icons from '@/components/Qunar/Icons'
+    import HomeHeader from '@/components/Qunar/Home/Header'
+    import HomeSwiper from '@/components/Qunar/Home/Swiper'
+    import HomeIcons from '@/components/Qunar/Home/Icons'
     export default {
         data(){
             return {}
         },
         components: {
-            Header,
-            Swiper,
-            Icons
+            HomeHeader,
+            HomeSwiper,
+            HomeIcons
         }
     }
 </script>

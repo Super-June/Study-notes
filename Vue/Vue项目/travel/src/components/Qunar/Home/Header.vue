@@ -16,16 +16,19 @@
 
 <script>
     export default {
-        name: 'Header'
+        name: 'HomeHeader'
     }
 </script>
 
 <style lang="less" scoped>
+	// 这里引用前面记得加 ~
+	@import '~@assets/styles/extractLess.less';
+	
     .header{
         display: flex;
         width: 100%;
         line-height: .86rem;
-        background-color: #00bcd4;
+        background-color: @bgColor;
         color: #fff;
         .header-left{
             width: .64rem;

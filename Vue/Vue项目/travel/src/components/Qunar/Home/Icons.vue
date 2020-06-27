@@ -14,6 +14,7 @@
 
 <script>
 export default {
+	name: 'HomeIcons',
     data() {
         return {
             swiperOptions: {
@@ -86,6 +87,7 @@ export default {
         }
     },
     computed: {
+        // 计算在swiper中每页放8个
         pages(){
             const pages = [];
             this.iconList.forEach((item,index) => {
@@ -102,6 +104,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+	// 这里引用前面记得加 ~
+	@import '~@assets/styles/extractLess.less';
+	
     .icons /deep/ .swiper-container{
         overflow: hidden;
         width: 100%;
@@ -137,9 +142,7 @@ export default {
                 font-size: 0.28rem;
                 text-align: center;
                 box-sizing: border-box;
-                overflow: hidden;
-                text-overflow:ellipsis;//文本溢出显示省略号
-                white-space:nowrap;//文本不会换行（单行文本溢出）
+                .textHide();
             }
         }
     }
