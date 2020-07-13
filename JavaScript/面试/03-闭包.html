@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+    <div class="wrap"></div>
+    <script>
+
+        /* 闭包总结：
+            所有的只由变量的查找，是在函数定义的地方，向上级作用域查找，不是在执行的地点
+         */
+
+        // 函数用作返回值
+        function create() {
+            let a = 100
+            return function () {
+                console.log(a)
+            }
+        }
+        let fn = create()
+        let a = 200
+        fn() // 100
+
+        // 函数用作参数
+        function print(fn) {
+            let b = 200
+            fn()
+        }
+        let b = 100
+        function fnb(){
+            console.log(b);
+        }
+        print(fnb) // 100
+
+
+        // 简单的cache工具
+        function cacheData() {
+            const data = {}
+            return {
+                set(key,value){
+                    data[key] = value
+                },
+                get(key){
+                    return data[key]
+                }
+            }
+        }
+        const cache = cacheData();
+        cache.set('name','张三'); // set 方法添加
+        console.log(cache.get('name')); // get 取出
+    </script>
+</body>
+</html>

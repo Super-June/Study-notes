@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jquery</title>
+    <style>
+        p.sum{
+            font-size: 20px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <p class="p1">我是p标签1</p>
+        <p class="p2">我是p标签2</p>
+        <p class="p3">我是p标签3</p>
+    </div>
+
+    <script>
+        class jQuery {
+            constructor(selector) {
+                const result = document.querySelectorAll(selector)
+                let length = result.length
+
+                for (let i = 0; i < length; i++){
+                    this[i] = result[i]
+                }
+
+                this.length = length
+                this.selector = selector
+            }
+            each(fn) {
+                for (let i = 0; i < this.length; i++){
+                    const elem = this[i]
+                    fn(elem)
+                }
+            }
+            on(type,fn) {
+                for (let i = 0; i < this.length; i++){
+                    const elem = this[i]
+                    elem.addEventListener(type,fn,false)
+                }
+            }
+        }
+        let jq = new jQuery('p');
+
+        // 循环
+        jq.each((elem) => console.log(elem))
+
+        // 事件
+        jq.on('click',function () {
+            this.style.background = 'rgb(' + Math.random() * 255 + ',' + Math.random() * 255 + ',' + Math.random() * 255 + ')'
+        })
+
+        // 插件
+        jQuery.prototype.sum = function (x, y) {
+            console.log(x + y)
+        }
+
+        // 方便 '造轮子'
+        class lggAdd extends jQuery {
+            constructor(selector) {
+                super(selector)
+            }
+            addClass(cls) {
+                for (let i = 0; i < this.length; i++){
+                    const elem = this[i]
+                    elem.className = cls
+                }
+            }
+        }
+        let lggJq = new lggAdd('p')
+
+        lggJq.addClass('sum') // 为每一个p标签添加class
+
+    </script>
+</body>
+</html>

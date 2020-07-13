@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
-import store from './store'
+import router from './router/index'
+import store from './store/index'
 
 // 样式初始化
 import '@assets/styles/normalize.css'
@@ -14,6 +14,10 @@ import '@assets/styles/iconfont.css'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 Vue.use(VueAwesomeSwiper)
+
+// 全局axios
+import axios from 'axios'
+Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 

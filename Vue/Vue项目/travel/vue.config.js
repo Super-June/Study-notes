@@ -6,9 +6,9 @@ function resolve(dir) {
 module.exports = {
 	lintOnSave: true,
 	chainWebpack: (config) => {
+		// 这里只写了两个个，你可以自己再加，按这种格式.set('', resolve(''))
 		config.resolve.alias
 			.set('@', resolve('src'))
 			.set('@assets', resolve('src/assets'))
-		// 这里只写了两个个，你可以自己再加，按这种格式.set('', resolve(''))
 	}
 };

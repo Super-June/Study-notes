@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+    <div class="wrap"></div>
+
+<!--    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.2.0/jquery.min.js"></script>-->
+    <script>
+
+        /*
+            单线程和异步
+                JS 是单线程语言，只能同时做一件事
+                浏览器和nodejs已经支持JS启动进程，如Web Worker
+                JS 和 DOM 渲染公用同一个线程，因为 JS 可以修改 DOM 结构
+                遇到等待（网络请求，定时任务）不能卡住
+            异步和同步
+                基于JS是单线程语言
+                异步不会阻塞代码执行
+                同步会阻塞代码执行
+         */
+
+        let imgSrc = 'https://i1.hdslb.com/bfs/face/c2461fd05e781fb5f89e37f342da16838d8759f1.png';
+
+        // promise 加载一张图片
+        function loadImg(src) {
+            return new Promise( (resolve,reject) => {
+                    const img = document.createElement('img');
+                    img.onload = function () {
+                        resolve(img);
+                    }
+                    img.onerror = function (err) {
+                        reject(new Error('图片加载失败！！！'));
+                    }
+                    img.src = src
+                }
+            )
+        }
+
+
+        loadImg(imgSrc).then((img) => {
+            console.log(img.width);
+            return img;
+        }).then((img) => {
+            console.log(img.height);
+            return img;
+        }).then((img) => {
+            document.querySelector('.wrap').append(img)
+        }).catch((err) => {
+            console.log(err)
+        })
+
+    </script>
+</body>
+</html>

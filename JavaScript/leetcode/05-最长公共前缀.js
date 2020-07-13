@@ -7,7 +7,12 @@
     说明: 所有输入只包含小写字母 a-z 。
  */
 var longestCommonPrefix = function(strs) {
-    console.log(strs)
+    for(let i = 0; i < strs.length; i++){
+		let arr = strs[i];
+		for(let item of strs[i]){
+			console.log(item);
+		}
+	}
 };
 
 console.log(longestCommonPrefix(["flower","flow","flight"]));

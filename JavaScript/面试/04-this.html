@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+</head>
+<body>
+    <div class="wrap"></div>
+    <script>
+        /*
+            参考网址：https://www.jianshu.com/p/bc541afad6ee
+            * this取什么值是在函数执行的时候确定的，不是在函数定义的时候确定的
+            * 箭头函数它的this永远取它上层函数的this
+            call：call 方法第一个参数是要绑定给this的值，后面传入的是一个参数列表。当第一个参数为null、undefined的时候，默认指向window。
+            apply：apply接受两个参数，第一个参数是要绑定给this的值，第二个参数是一个参数数组。当第一个参数为null、undefined的时候，默认指向window。
+            bind：和call很相似，第一个参数是this的指向，从第二个参数开始是接收的参数列表。区别在于bind方法返回值是函数以及bind接收的参数列表的使用。
+         */
+        function fn1() {
+            console.log(this)
+        }
+        // window
+        fn1()
+        // {a:1,b:2} 第一个是指向，后面的就是传参
+        fn1.call({a:1,b:2})
+        //
+        fn1.apply({a:2,b:4},[1,2])
+
+        fn1.bind({x: 3,y: 3})
+    </script>
+</body>
+</html>

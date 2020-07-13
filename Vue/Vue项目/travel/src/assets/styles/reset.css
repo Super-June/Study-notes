@@ -31,3 +31,10 @@ html,body{
     max-width: 750px;
     margin: 0 auto;
 }
+
+/*清除浮动*/
+.clearfix:after{
+    content: '';
+    display: table;
+    clear: both;
+}
