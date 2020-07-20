@@ -36,14 +36,57 @@
         	text-align: center;
         }
         .play{
-        	width: 152px;
-        	height: 163px;
-        	margin: 35px auto 0;
+        	width: 190px;
+        	height: 190px;
+        	margin: 30px auto 0;
+            background: url(./images/disc.png) no-repeat center/cover;
+            box-sizing: border-box;
+            padding: 11%;
+            position: relative;
         }
-		.play img{
-			animation: music 3s infinite;
-			/*animation-play-state: paused;*/
-		}
+        .play img{
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            animation: music 6s linear infinite;
+            animation-play-state: paused;
+        }
+        .play span{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 40px;
+            height: 40px;
+            background: url(./images/stop.png) no-repeat center/cover;
+            transform: translate(-50%,-50%);
+        }
+        .play.stop img{
+            animation-play-state: running;
+        }
+        .play.stop span{
+            display: none;
+        }
+
+        .lrc{
+            height: 120px;
+            line-height: 1.5;
+            margin: 30px 20px 0;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .lrc .content{
+            transition: transform .3s;
+        }
+        .lrc .content p{transition: all .3s;}
+        .lrc .content p.active{
+            /* 字体渐变 */
+            /* background-image:-webkit-linear-gradient( 45deg , #ef33b1, #ead6ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color:transparent; */
+            color: #22d59c;
+            font-weight: bold;
+        }
 		
 		@keyframes music {
 			0%{
@@ -57,33 +100,19 @@
 </head>
 <body>
     <textarea name="" id="txt" cols="30" rows="10">
-    	[ti:济南济南]
-		[ar:陈小熊]
-		[al:之外]
-		[by:]
-		[offset:0]
-		[00:00.10]济南济南 - 陈小熊
+        [00:00.10]济南济南 - 陈小熊
 		[00:00.20]词：陈洁修
 		[00:00.30]曲：陈洁修
 		[00:00.83]我抬眼是千佛山的轮廓
 		[00:04.79]我闭眼是大明湖和护城河
-		[00:08.08]
 		[00:08.85]趵突泉在我耳畔喷涌着
-		[00:13.87]
 		[00:16.32]可我却不清楚
-		[00:18.71]
 		[00:20.01]济南
-		[00:21.63]
 		[00:22.68]到底是啥样的
-		[00:25.67]
 		[00:26.43]它究竟是啥样的
-		[00:29.86]
 		[00:31.64]穿旗袍的姑娘你在哪儿呢
-		[00:34.65]
 		[00:35.29]说快板儿的大爷你在哪儿呢
-		[00:38.33]
 		[00:39.01]膈应人的小么都长大了
-		[00:42.06]
 		[00:42.76]半青的乡音有谁还会记得
 		[00:46.35]那古街古巷都已经被拆了
 		[00:50.36]民国的火车站我都未见过
@@ -91,16 +120,12 @@
 		[00:57.81]户户垂杨的美景已成为传说
 		[01:01.64]济南呐 济南呐
 		[01:04.22]你在哪儿呢
-		[01:07.10]
 		[01:09.01]济南呐 济南呐
 		[01:11.67]我离家太远了
-		[01:14.49]
 		[01:16.51]济南呐 济南呐
 		[01:19.18]我回不去了
-		[01:23.00]
 		[01:24.05]济南呐 济南呐
 		[01:26.92]我想你了
-		[01:29.55]
 		[02:01.68]古城的大西边儿有黄河流过
 		[02:05.22]东南北那三边儿有山川包围着
 		[02:08.99]内蒙古的风沙它长驱直入呢
@@ -109,32 +134,21 @@
 		[02:20.25]霓虹灯的光照不亮护城河
 		[02:24.08]燕喜堂的牌匾它昏暗又没落
 		[02:27.68]芙蓉街的店家
-		[02:29.97]
 		[02:30.49]有几个是鲁菜呢
-		[02:33.49]
 		[02:35.32]济南呐 济南呐
 		[02:38.06]你的根在哪儿呢
-		[02:40.84]
 		[02:42.76]济南呐 济南呐
 		[02:45.42]你还剩下什么啊
-		[02:48.69]
 		[02:50.32]济南呐 济南呐
 		[02:52.97]你知道吗
-		[02:56.99]
 		[02:57.78]济南呐 济南呐
 		[03:00.48]我有多爱你呢
-		[03:03.93]
 		[03:04.99]我抬眼是千佛山的轮廓
 		[03:08.79]我闭眼是大明湖和护城河
-		[03:12.32]
 		[03:12.87]趵突泉在我耳畔喷涌着
-		[03:18.00]
 		[03:20.24]我只想对你说
-		[03:22.84]
 		[03:24.07]济南
-		[03:25.35]
 		[03:27.05]我想你了
-		[03:29.90]
 		[03:30.69]我想回家了
     </textarea>
 
@@ -142,14 +156,15 @@
 		<div class="title">济南济南</div>
 		<div class="singer">陈小熊</div>
 		<div class="play">
-			<img src="./images/music.png" alt="">
-		</div>
+            <img src="./images/img.jpg" alt="">
+            <span class="icon"></span>
+        </div>
 		<div class="lrc">
 			<div class="content"></div>
 		</div>
 	</article>
 	
-	<audio id="myMusic" src="images/济南济南在线试听_陈小熊_高音质歌曲_九酷音乐.mp3" >
+	<audio id="myMusic" src="images/济南济南在线试听_陈小熊_高音质歌曲_九酷音乐.mp3" loop>
 		您的浏览器不支持音频播放
 	</audio>
 
@@ -158,16 +173,65 @@
 		let music = document.querySelector('#myMusic');
 		let txt = document.querySelector('#txt');
 		let content = document.querySelector('.content')
-		let bool = true;
+        let bool = true;
+        let lrcHtml = '';
 		play.addEventListener('click',function(){
 			if (bool) {
 				music.play();
+                play.classList.add('stop');
 				bool = false;
 			}else{
 				music.pause();
+                play.classList.remove('stop');
 				bool = true;
 			}
-		})
+        })
+        
+        // 正则匹配时间、歌词
+        // let resTime = txt.value.match(/\[\d+:\d+.\d+]/g); //时间
+        // let resLrc = txt.value.match(/(([\u4E00-\u9FA5]|[a-zA-Z])( ?)(：?))+/g); //歌词
+
+        // 原型上自定义去除空数组方法
+        Array.prototype.notempty = function () {
+            let arr = [];
+            this.map(function(item){
+                item = item.trim(); // 去除首尾空格
+                if(item != '' && item != undefined){
+                    arr.push(item);
+                }
+            })
+            return arr;
+        }
+        
+        let lrcArr = txt.value.split('[');
+        lrcArr = lrcArr.notempty(); // 去除空数组
+        lrcArr.forEach((item,index) => {
+            let lrcTime = item.split(']');
+            let timeArr = lrcTime[0].split(':');
+            let m = timeArr[0];
+            let s = timeArr[1].split('.')[0];
+            let time = m * 60 + s * 1;
+            lrcHtml += '<p class="lrc-p" data-time=' + time + '>' + lrcTime[1] + '</p>';
+        })
+
+        content.innerHTML = lrcHtml;
+
+        let lrc_p = document.querySelectorAll('.lrc-p');
+        // timeupdate 播放位置发生改变事件
+        music.addEventListener('timeupdate', function (event) {
+            let curTime = parseInt(event.srcElement.currentTime); // 获取播放进度多少秒
+            lrc_p.forEach((item,index) => {
+                if(item.getAttribute('data-time') == curTime){ // 判断歌词是否等于播放时间
+                    lrc_p[index == 0 ? 0 : index-1].classList.remove('active'); // 删除上一个class
+                    item.classList.add('active');// 当前p添加class
+                    if(lrc_p[index].offsetTop >= 72){ // 判断距离顶部设置偏移量
+                        // 减去个行间距 居中
+                        content.style.cssText = 'transform: translateY(' + -(lrc_p[index].offsetTop - 48) + 'px)'
+                    }
+                }
+            })
+        })
+
 	</script>
 
 </body>
