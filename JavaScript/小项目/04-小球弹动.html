@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrapper{
+			width: 600px;
+			height: 500px;
+			border: 1px solid #000;
+			margin-top: 10px;
+			position: relative;
+		}
+		.box{
+			position: absolute;
+			width: 30px;
+			height: 30px;
+			background-color: #000;
+			border-radius: 50%;
+		}
+    </style>
+</head>
+<body>
+    <button class="btn">创建小球</button>
+    <div class="wrapper"></div>
+    <script>
+        let btn = document.querySelector('.btn');
+		let wrap = document.querySelector('.wrapper');
+
+		btn.addEventListener('click',function(event){
+            let speedT = 5; // 速度
+            let speedL = 5;
+            let topT = 0;
+            let leftL = 0;
+            let box = null;
+
+			box = document.createElement("div");
+			box.className = 'box';
+			wrap.appendChild(box);
+            // 设置小球位置到中心点
+			topT = wrap.clientHeight/2 - box.offsetHeight/2;
+            leftL = wrap.clientWidth/2 - box.offsetWidth/2;
+            box.style.left = leftL + 'px';
+            box.style.top = topT + 'px';
+
+            setInterval(function () {
+                topT += speedT;
+                leftL += speedL;
+                // 判断边界改变方向
+                if (leftL < 0 || leftL > (wrap.offsetWidth - box.offsetWidth)){
+                    speedL = -speedL;
+                }
+                if (topT < 0 || topT > (wrap.offsetHeight - box.offsetHeight)){
+                    speedT = -speedT;
+                }
+
+                box.style.top = topT + 'px';
+                box.style.left = leftL + 'px';
+            },30)
+
+        })
+
+    </script>
+</body>
+</html>

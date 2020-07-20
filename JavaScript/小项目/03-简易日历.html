@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{padding: 0;margin: 0}
+        .wrapper{
+            width: 300px;
+            border: 1px solid #000;
+            margin: 0 auto;
+        }
+        .header .swiper{
+            height: 35px;
+        }
+        .header .swiper div{
+            float: left;
+            width: 33.33333%;
+            line-height: 35px;
+            padding: 0 10px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .header .swiper .prev:hover,
+        .header .swiper .next:hover{
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .header .swiper .prev{
+            text-align: left;
+        }
+        .header .swiper .next{
+            text-align: right;
+        }
+        .header .month{
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+        }
+        .header .week{
+            height: 35px;
+            background-color: #ddd;
+        }
+        .header .week span{
+            float: left;
+            width: 14.2857142%;
+            line-height: 35px;
+            text-align: center;
+        }
+        .container{font-size: 0;padding: 10px 0}
+        .container span{
+            display: inline-block;
+            width: 14.2857142%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            box-sizing: border-box;
+            vertical-align: middle;
+        }
+        .container span.con{border: 1px solid #dddddd;}
+        .container span.active{
+            color: #f00;
+        }
+        .container span:hover{
+            color: #f00;
+            text-decoration: underline;
+            border-color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <div class="swiper">
+                <div class="prev">上一页</div>
+                <div class="year"></div>
+                <div class="next">下一页</div>
+            </div>
+            <div class="month"></div>
+            <div class="week">
+                <span>日</span>
+                <span>一</span>
+                <span>二</span>
+                <span>三</span>
+                <span>四</span>
+                <span>五</span>
+                <span>六</span>
+            </div>
+        </div>
+        <div class="container"></div>
+    </div>
+
+    <script>
+        let prev = document.querySelector('.header .swiper .prev'),
+            next = document.querySelector('.header .swiper .next'),
+            year = document.querySelector('.header .swiper .year'),
+            month = document.querySelector('.header .month'),
+            day = document.querySelector('.container'),
+            dateHtml = '';
+        let date = new Date();
+        // 切换上一月
+        prev.addEventListener('click',function () {
+            date.setMonth(date.getMonth() - 1);
+            dateHtml = '';
+            Calendar();
+        })
+        // 切换下一月
+        next.addEventListener('click',function () {
+            date.setMonth(date.getMonth() + 1);
+            dateHtml = '';
+            Calendar();
+        })
+
+        Calendar();
+        function Calendar(){
+            let cYear = date.getFullYear(), // 年份
+                cMonth = date.getMonth(), //月份
+                cDateEm = date.getDate(); //日期
+            // 年份
+            year.innerHTML = cYear;
+            // 月份
+            let monthArr = ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+            month.innerHTML = monthArr[cMonth];
+            // 每个月的第一天十周几 (星期天获取的是0)
+            let cDay = new Date(cYear,cMonth, 1).getDay();
+            // 对应顶部星期
+            for (let i = 0; i < cDay; i++){
+                dateHtml += '<span></span>';
+            }
+            // 获取一个月有多少天
+            let cDate = new Date(cYear,cMonth + 1, 0).getDate();
+            for (let i = 1; i <= cDate; i++){
+                if ( i == cDateEm){
+                    dateHtml += '<span class="con active">' + i + '</span>';
+                }else{
+                    dateHtml += '<span class="con">' + i + '</span>';
+                }
+            }
+            // 日期
+            day.innerHTML = dateHtml;
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <style>
+        *{font-size: 20px}
+        input{
+            width: 100px;
+            vertical-align: middle;
+        }
+        select{vertical-align: middle}
+        .equal{
+            display: inline-block;
+            width: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <input type="text" class="value1">
+        <select>
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input type="text" class="value2">
+        <span class="equal">=</span>
+        <span class="num">0</span>
+    </div>
+
+    <script>
+        const btn = document.querySelector('.equal'),
+            total = document.querySelector('.num');
+        let result = 0;
+        btn.addEventListener('click',function () {
+            let iptfir = document.querySelector('.value1').value,
+                  iptAft = document.querySelector('.value2').value,
+                  selectValue = document.querySelector('select').value;
+            if (iptfir.trim() == '' || iptAft.trim() == ''){
+                alert('输入框不能为空！！！')
+                return;
+            }else{
+                iptfir = parseFloat(iptfir)
+                iptAft = parseFloat(iptAft)
+                if (isNaN(iptfir) || isNaN(iptAft)){
+                    alert('请输入有效数字！！！')
+                }
+            }
+            switch (selectValue) {
+                case '+':
+                    result = iptfir + iptAft;
+                    break;
+                case '-':
+                    result = iptfir - iptAft;
+                    break;
+                case '*':
+                    result = iptfir * iptAft;
+                    break;
+                case '/':
+                    result = iptfir / iptAft;
+                    break;
+                case '%':
+                    result = iptfir % iptAft;
+                    break;
+            }
+            total.innerHTML = result
+        })
+
+    </script>
+
+
+</body>
+</html>
