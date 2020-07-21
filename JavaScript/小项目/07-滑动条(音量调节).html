@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{padding: 0;margin: 0}
+        body{
+            padding: 50px;
+        }
+        .slider-wrapper{
+            overflow: hidden;
+            width: 300px;
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 50px;
+            position: relative;
+        }
+        .slider-wrapper .slider{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background-color: red;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+<body>
+    <audio id="myMusic" src="./images/济南济南在线试听_陈小熊_高音质歌曲_九酷音乐.mp3" controls></audio>
+    <div class="slider-wrapper"><div class="slider"></div></div>
+    <script>
+        let sliderWrap = document.querySelector('.slider-wrapper');
+        let slider = document.querySelector('.slider');
+
+        let music = document.querySelector('#myMusic')
+
+        // 根据音量设置（music.volume获取音乐的音量1）
+        slider.style.width = (music.volume * 100) + '%';
+
+        sliderWrap.onmousedown = function (event) {
+            event = event || window.event;
+            let sliderW = sliderWrap.offsetWidth;
+            let offX = event.offsetX;
+
+            // 设置自定义音量条进度
+            slider.style.width = Math.ceil((offX / sliderW) * 100) + '%';
+
+            // 调节音量
+            music.volume = (offX / sliderW).toFixed(1);
+
+            sliderWrap.onmousemove = function (event) {
+                event = event || window.event;
+                let offX = event.offsetX;
+
+                // 设置自定义音量条进度
+                slider.style.width = Math.ceil((offX / sliderW) * 100) + '%';
+
+                // 调节音量
+                music.volume = (offX / sliderW).toFixed(1);
+
+                console.log(music.volume)
+            }
+            document.onmouseup = function () {
+                sliderWrap.onmousemove = document.onmouseup = null;
+            }
+        }
+    </script>
+</body>
+</html>

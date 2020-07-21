@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>碰撞检测</title>
+    <style>
+        *{padding: 0;margin: 0;}
+        .box1{
+            position: absolute;
+            left: 300px;
+            top: 300px;
+            width: 100px;
+            height: 100px;
+            background: peru;
+        }
+        .box2{
+            position: absolute;
+            left: 50px;
+            top: 50px;
+            width: 100px;
+            height: 100px;
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box1"></div>
+    <div class="box2"></div>
+
+    <script>
+        let box1 = document.querySelector('.box1');
+        let box2 = document.querySelector('.box2');
+
+        // box1
+        let boxW = box1.offsetWidth;
+        let boxH = box1.offsetHeight;
+        let boxLeft = box1.offsetLeft;
+        let boxTop = box1.offsetTop;
+        // box2
+        let box2W = box2.offsetWidth;
+        let box2H = box2.offsetHeight;
+        console.log(box2W);
+        console.log(box2H);
+
+        box2.onmousedown = function(event){
+            event = event || window.event;
+            let offX = event.offsetX;
+            let offY = event.offsetY;
+
+            document.onmousemove = function(event){
+                event = event || window.event;
+                let left = event.pageX;
+                let top = event.pageY;
+                left = left - offX;
+                top = top - offY;
+
+                let boxL2 = left + box2W;
+                let boxL1 = boxLeft + boxW;
+                let boxT2 = top + box2H;
+                let boxT1 = boxTop + boxH;
+
+                if(boxL2 >= boxLeft && left <= boxL1 && boxT2 >= boxTop && top <= boxT1){
+                    box1.style.backgroundColor = 'red';
+                    console.log('碰撞到了');
+                }else{
+                    box1.style.backgroundColor = 'peru';
+                    console.log('没碰撞到');
+                }
+
+                box2.style.left = left + 'px';
+                box2.style.top = top + 'px';
+            }
+            document.onmouseup = function () {
+                document.onmouseup = document.onmousemove = null;
+            }
+        }
+    </script>
+</body>
+</html>
