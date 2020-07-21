@@ -184,7 +184,7 @@
 				music.pause();
                 play.classList.remove('stop');
 				bool = true;
-			}
+            }
         })
         
         // 正则匹配时间、歌词
@@ -213,7 +213,7 @@
             let time = m * 60 + s * 1;
             lrcHtml += '<p class="lrc-p" data-time=' + time + '>' + lrcTime[1] + '</p>';
         })
-
+        // 歌词
         content.innerHTML = lrcHtml;
 
         let lrc_p = document.querySelectorAll('.lrc-p');
@@ -230,7 +230,17 @@
                     }
                 }
             })
+
+            // music.paused // 判断当前音乐是否在播放或暂停
+            if (music.paused) {
+                console.log('暂停');
+            }else{
+                console.log("播放");
+            }
+
         })
+
+        // 音量调节
 
 	</script>
 

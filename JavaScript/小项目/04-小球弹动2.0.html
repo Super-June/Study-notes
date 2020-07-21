@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>小球弹动</title>
+    <style>
+        .wrapper{
+            position: absolute;
+            left: 8px;
+            right: 8px;
+            top: 38px;
+            bottom: 8px;
+            border: 2px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn">创建小球</button>
+    <div class="wrapper"></div>
+    <script>
+        let btn = document.querySelector('.btn');
+        let wrap = document.querySelector('.wrapper');
+        // 获取外边宽高
+        let wrapW = wrap.offsetWidth;
+        let wrapH = wrap.offsetHeight;
+        let txtCenter = 0;
+
+        btn.addEventListener('click',function () {
+
+            let box = document.createElement('div');
+            let txt = document.createTextNode(++txtCenter)
+            box.appendChild(txt);
+            box.className = 'box';
+            box.style.cssText = 'text-align: center;border-radius: 50%;position: absolute;top: 0;font-size: 20px;'
+            let WH = Math.ceil(Math.random()*20)+50;
+            box.style.width = WH + 'px';
+            box.style.height = WH + 'px';
+            box.style.lineHeight = WH + 'px';
+            // 顶部随机位置生产小球
+            box.style.left = Math.ceil(Math.random()* (wrapW - WH)) + 'px';
+            box.style.background = colorRandom();
+            wrap.appendChild(box);
+
+            handleMove(box);
+        })
+
+        function handleMove(box){
+            // 速度 
+            let xSpeed = Math.ceil(Math.random()*5);
+            let ySpeed = Math.ceil(Math.random()*5);
+
+            // 获取圆球宽高
+            let boxW = box.offsetWidth;
+            let boxH = box.offsetHeight;
+            let top = box.offsetTop;
+            let left = box.offsetLeft;
+
+            setInterval(function(){
+
+                if(0 > top || top > (wrapH - boxH)){
+                    ySpeed = -ySpeed;
+                    // 碰撞后改变背景颜色
+                    box.style.background = colorRandom();
+                }
+                if(0 > left || left > (wrapW - boxW)){
+                    xSpeed = -xSpeed;
+                    // 碰撞后改变背景颜色
+                    box.style.background = colorRandom();
+                }
+
+                top += ySpeed;
+                left += xSpeed;
+                box.style.top = top + 'px';
+                box.style.left = left + 'px';
+            },10)
+        }
+
+        // 颜色改变
+        function colorRandom(){
+            return 'rgba(' + Math.ceil(Math.random()*255) + ',' + Math.ceil(Math.random()*255) + ',' + Math.ceil(Math.random()*255) +',1)'
+        }
+
+        //改变窗口大小重新获取窗口宽高
+        window.addEventListener('resize',function(){
+            wrapW = wrap.offsetWidth;
+            wrapH = wrap.offsetHeight;
+        })
+
+    </script>
+</body>
+</html>
