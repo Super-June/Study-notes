@@ -5,8 +5,14 @@
             <div class="login-logo">
                 <img src="../assets/logo.png" alt="" />
             </div>
-            <el-form :model="loginForm" label-width="0" class="form-wrapper">
-                <el-form-item>
+            <el-form
+                ref="loginFormReset"
+                :model="loginForm"
+                :rules="loginFormRules"
+                label-width="0"
+                class="form-wrapper"
+            >
+                <el-form-item prop="username">
                     <el-input
                         type="text"
                         v-model="loginForm.username"
@@ -14,7 +20,7 @@
                         prefix-icon="el-icon-user"
                     ></el-input>
                 </el-form-item>
-                <el-form-item>
+                <el-form-item prop="password">
                     <el-input
                         type="password"
                         v-model="loginForm.password"
@@ -23,7 +29,9 @@
                     ></el-input>
                 </el-form-item>
                 <el-form-item class="login-btn">
-                    <el-button type="primary" @click="handleLogin">登录</el-button>
+                    <el-button type="primary" @click="handleLogin"
+                        >登录</el-button
+                    >
                     <el-button type="info" @click="handleReset">重置</el-button>
                 </el-form-item>
             </el-form>
@@ -37,22 +45,67 @@ export default {
         return {
             // 登录表单的数据绑定对象
             loginForm: {
-                username: '',
-                password: ''
+                username: 'admin',
+                password: '123456'
             },
             // 表单的验证规则
             loginFormRules: {
-                username: []
+                // 验证用户名是否合法
+                username: [
+                    {
+                        required: true,
+                        message: '请输登录名称',
+                        trigger: 'blur'
+                    },
+                    {
+                        min: 3,
+                        max: 10,
+                        message: '长度在 3 到 10个字符',
+                        trigger: 'blur'
+                    }
+                ],
+                // 验证密码是否合法
+                password: [
+                    {
+                        required: true,
+                        message: '请输登录密码',
+                        trigger: 'blur'
+                    },
+                    {
+                        min: 6,
+                        max: 15,
+                        message: '长度在6 到 15个字符',
+                        trigger: 'blur'
+                    }
+                ]
             }
         }
     },
     // 方法
     methods: {
+        // 登录
         handleLogin() {
-            alert('登录')
+            let that = this
+            // 表单校验 validate 返回 true / false
+            this.$refs.loginFormReset.validate(async valid => {
+                if (!valid) return
+                const { data: res } = await that.$http.post(
+                    'login',
+                    that.loginForm
+                )
+                if (res.meta.status !== 200)
+                    return this.$message.error(res.meta.msg)
+                that.$message.success(res.meta.msg)
+                // 1、将登录成功之后的 token，保存到客户端的 sessionStorage 中
+                //  1.1、项目中除了登录以外的其他api接口，必须在登录之后才能访问
+                //  2.2、token 只应在当前网站打开期间生效，所以将 token 保存在 sessionStorage 中
+                window.sessionStorage.setItem('token', res.data.token)
+                that.$router.push('/home')
+            })
         },
+        // 重置表单
         handleReset() {
-            alert('重置')
+            this.$refs.loginFormReset.resetFields()
         }
     }
 }
@@ -60,7 +113,9 @@ export default {
 
 <style lang="less" scoped>
 // less 样式 穿透
-.login-wrapper /deep/ .el-input__icon {font-size: 16px;}
+.login-wrapper /deep/ .el-input__icon {
+    font-size: 16px;
+}
 
 .login-wrapper {
     height: 100%;
