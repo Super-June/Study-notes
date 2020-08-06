@@ -1,6 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+// 解决 ElementUI 导航栏中的vue-router再3.0版本中重复点击菜单报错问题
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err)
+}
+
 Vue.use(Router)
 
 const router = new Router({
@@ -15,7 +21,18 @@ const router = new Router({
         },
         {
             path: '/home',
-            component: () => import('./components/Home')
+            component: () => import('./components/Home'),
+            redirect: '/welcome',
+            children: [
+                {
+                    path: '/welcome',
+                    component: () => import('./components/Welcome')
+                },
+                {
+                    path: '/users',
+                    component: () => import('./components/user/Users')
+                }
+            ]
         }
     ]
 })

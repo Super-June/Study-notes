@@ -29,9 +29,13 @@
                     ></el-input>
                 </el-form-item>
                 <el-form-item class="login-btn">
-                    <el-button type="primary" @click="handleLogin"
-                        >登录</el-button
+                    <el-button
+                        type="primary"
+                        @click="handleLogin"
+                        v-loading.fullscreen.lock="loading"
                     >
+                        登录
+                    </el-button>
                     <el-button type="info" @click="handleReset">重置</el-button>
                 </el-form-item>
             </el-form>
@@ -43,6 +47,8 @@
 export default {
     data() {
         return {
+            // 加载
+            loading: false,
             // 登录表单的数据绑定对象
             loginForm: {
                 username: 'admin',
@@ -86,6 +92,8 @@ export default {
         // 登录
         handleLogin() {
             let that = this
+            // loader 开启
+            that.loading = true
             // 表单校验 validate 返回 true / false
             this.$refs.loginFormReset.validate(async valid => {
                 if (!valid) return
@@ -96,6 +104,8 @@ export default {
                 if (res.meta.status !== 200)
                     return this.$message.error(res.meta.msg)
                 that.$message.success(res.meta.msg)
+                // loader 关闭
+                that.loading = false
                 // 1、将登录成功之后的 token，保存到客户端的 sessionStorage 中
                 //  1.1、项目中除了登录以外的其他api接口，必须在登录之后才能访问
                 //  2.2、token 只应在当前网站打开期间生效，所以将 token 保存在 sessionStorage 中

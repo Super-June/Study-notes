@@ -5,3 +5,18 @@ body,
     height: 100%;
     color: #222;
 }
+.el-breadcrumb{
+    margin-bottom: 15px;
+    font-size: 12px;
+}
+.el-card.is-always-shadow{
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+}
+.el-table {
+    margin-top: 15px;
+    font-size: 12px;
+}
+.el-pagination {
+    text-align: center;
+    margin-top: 15px;
+}
