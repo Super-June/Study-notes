@@ -1,20 +1,23 @@
 <template>
-    <div>
-        <router-view></router-view>
-
-        <Tabbar v-if="$route.meta.isTabbar"></Tabbar>
-    </div>
+  <div id="app">
+    <router-view
+      v-if="!this.$route.meta.isTabbar"
+      style="padding-bottom: 110px"
+    ></router-view>
+    <router-view v-else></router-view>
+    <Tabbar v-if="!this.$route.meta.isTabbar"></Tabbar>
+  </div>
 </template>
 
 <script>
 import Tabbar from './common/Tabbar'
 
 export default {
-    name: 'app',
-    components: {
-        Tabbar
-    }
+  name: 'App',
+  components: {
+    Tabbar
+  }
 }
 </script>
 
-<style lang="less"></style>
+<style lang="less" scoped></style>
