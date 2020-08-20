@@ -32,14 +32,11 @@
 <body>
     <audio id="myMusic" src="./images/济南济南在线试听_陈小熊_高音质歌曲_九酷音乐.mp3" controls></audio>
     <div class="slider-wrapper"><div class="slider"></div></div>
-    <span class="num"></span>
     <script>
         let sliderWrap = document.querySelector('.slider-wrapper');
         let slider = document.querySelector('.slider');
 
         let music = document.querySelector('#myMusic')
-
-        let numBox = document.querySelector('.num')
 
         // 根据音量设置（music.volume获取音乐的音量1）
         slider.style.width = (music.volume * 100) + '%';
@@ -53,9 +50,7 @@
             slider.style.width = Math.ceil((offX / sliderW) * 100) + '%';
 
             // 调节音量
-            music.volume = (offX / sliderW).toFixed(1)
-
-            numBox.innerHTML = (offX / sliderW).toFixed(1) * 100 + '%'
+            music.volume = (offX / sliderW).toFixed(1);
 
             sliderWrap.onmousemove = function (event) {
                 event = event || window.event;
@@ -66,8 +61,6 @@
 
                 // 调节音量
                 music.volume = (offX / sliderW).toFixed(1);
-
-                numBox.innerHTML = (offX / sliderW).toFixed(1) * 100 + '%'
 
                 console.log(music.volume)
             }

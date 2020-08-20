@@ -31,14 +31,6 @@ const router = new Router({
                 {
                     path: '/users',
                     component: () => import('./components/user/Users')
-                },
-                {
-                    path: '/roles',
-                    component: () => import('./components/power/Roles')
-                },
-                {
-                    path: '/rights',
-                    component: () => import('./components/power/Rights')
                 }
             ]
         }
