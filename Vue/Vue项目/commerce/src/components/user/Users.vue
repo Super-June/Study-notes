@@ -32,7 +32,7 @@
                     >
                 </el-col>
             </el-row>
-            <el-table :data="usersList.users" border style="width: 100%">
+            <el-table :data="usersList.users" border stripe style="width: 100%">
                 <el-table-column
                     label="#"
                     type="index"
