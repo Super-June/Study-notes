@@ -2,39 +2,39 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>面向对象</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>面向对象</title>
 </head>
 
 <body>
-    <script type="text/javascript">
-        
-        class Users {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-            }
-            sum() {
-                return this.x + this.y;
-            }
-        }
+  <script type="text/javascript">
 
-        let user = new Users(13, 12);
+    class Users {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+      }
+      sum() {
+        return this.x + this.y;
+      }
+    }
 
-        console.log(user.sum())
+    let user = new Users(13, 12);
 
-        class Sons extends Users {
-            constructor(x, y) {
-                super(x, y); // 
-            }
-        }
+    console.log(user.sum())
 
-        let son = new Sons(3, 6);
+    class Sons extends Users {
+      constructor(x, y) {
+        super(x, y); // 
+      }
+    }
 
-        console.log(son.sum());
+    let son = new Sons(3, 6);
 
-    </script>
+    console.log(son.sum());
+
+  </script>
 </body>
 
 </html>

@@ -1,37 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Title</title>
-    <style>
-        *{padding: 0;margin: 0;}
-        .box{width: 100px;height: 100px;background-color: #ddd;position: relative;top: 30px;left: 50px;}
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Title</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: #ddd;
+      position: relative;
+      top: 30px;
+      left: 50px;
+    }
+  </style>
 </head>
+
 <body>
-    <div class="box"></div>
-    <script>
-        /*
-            clientX/Y获取到的是触发点相对浏览器可视区域左上角距离，不随页面滚动而改变。
-            pageX/Y获取到的是触发点相对文档区域左上角距离，会随着页面滚动而改变
-            offsetX/Y获取到是触发点相对被触发dom的左上角距离，不过左上角基准点在不同浏览器中有区别，其中在IE中以内容区左上角为基准点不包括边框，如果触发点在边框上会返回负值，而chrome中以边框左上角为基准点。
-            layerX/Y获取到的是触发点相对被触发dom左上角的距离，数值与offsetX/Y相同，这个变量就是firefox用来替代offsetX/Y的，基准点为边框左上角，但是有个条件就是，被触发的dom需要设置为position:relative或者position:absolute，否则会返回相对html文档区域左上角的距离。
-            screenX/Y获取到的是触发点相对显示器屏幕左上角的距离，不随页面滚动而改变。
-         */
-        let box = document.querySelector('.box');
-        box.onmousedown = function (event) {
-            let offsetX = event.offsetX;
-            let offsetY = event.offsetY;
-            document.onmousemove = function (event) {
-                console.log(event);
-                box.style.cssText = 'top:' + (event.pageY - offsetY) + 'px;left:' + (event.pageX - offsetX) + 'px;';
-            }
-            document.onmouseup = function () {
-                document.onmousemove = null;
-            }
-        }
-    </script>
+  <div class="box"></div>
+  <script>
+    /*
+        clientX/Y获取到的是触发点相对浏览器可视区域左上角距离，不随页面滚动而改变。
+        pageX/Y获取到的是触发点相对文档区域左上角距离，会随着页面滚动而改变
+        offsetX/Y获取到是触发点相对被触发dom的左上角距离，不过左上角基准点在不同浏览器中有区别，其中在IE中以内容区左上角为基准点不包括边框，如果触发点在边框上会返回负值，而chrome中以边框左上角为基准点。
+        layerX/Y获取到的是触发点相对被触发dom左上角的距离，数值与offsetX/Y相同，这个变量就是firefox用来替代offsetX/Y的，基准点为边框左上角，但是有个条件就是，被触发的dom需要设置为position:relative或者position:absolute，否则会返回相对html文档区域左上角的距离。
+        screenX/Y获取到的是触发点相对显示器屏幕左上角的距离，不随页面滚动而改变。
+     */
+    let box = document.querySelector('.box');
+    box.onmousedown = function (event) {
+      let offsetX = event.offsetX;
+      let offsetY = event.offsetY;
+      document.onmousemove = function (event) {
+        console.log(event);
+        box.style.cssText = 'top:' + (event.pageY - offsetY) + 'px;left:' + (event.pageX - offsetX) + 'px;';
+      }
+      document.onmouseup = function () {
+        document.onmousemove = null;
+      }
+    }
+  </script>
 </body>
+
 </html>

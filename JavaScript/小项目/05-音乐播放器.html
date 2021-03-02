@@ -1,105 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>我的音乐播放器</title>
-    <style>
-        *{padding: 0;margin: 0;}
-        body{
-        	height: 100vh;
-        	display: flex;
-        	justify-content: center;
-        	align-items: center;
-        	font-weight: 200;
-        	font-family: '微软雅黑 light';
-        	color: #2c606d;
-        }
-        #txt{display: none;}
-        .photo{
-        	overflow: hidden;
-        	position: relative;
-        	width: 320px;
-        	height: 600px;
-        	background-image: linear-gradient( 180deg, #ead6ee, #a0f1ea);
-        	background-attachment: fixed;
-        	border-radius: 15px;
-        }
-        .title{
-        	font-size: 30px;
-        	text-align: center;
-        	padding-top: 40px;
-        }
-        .singer{
-        	padding-top: 20px;
-        	text-align: center;
-        }
-        .play{
-        	width: 190px;
-        	height: 190px;
-        	margin: 30px auto 0;
-            background: url(./images/disc.png) no-repeat center/cover;
-            box-sizing: border-box;
-            padding: 11%;
-            position: relative;
-        }
-        .play img{
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            animation: music 6s linear infinite;
-            animation-play-state: paused;
-        }
-        .play span{
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            width: 40px;
-            height: 40px;
-            background: url(./images/stop.png) no-repeat center/cover;
-            transform: translate(-50%,-50%);
-        }
-        .play.stop img{
-            animation-play-state: running;
-        }
-        .play.stop span{
-            display: none;
-        }
 
-        .lrc{
-            height: 120px;
-            line-height: 1.5;
-            margin: 30px 20px 0;
-            text-align: center;
-            overflow: hidden;
-            position: relative;
-        }
-        .lrc .content{
-            transition: transform .3s;
-        }
-        .lrc .content p{transition: all .3s;}
-        .lrc .content p.active{
-            /* 字体渐变 */
-            /* background-image:-webkit-linear-gradient( 45deg , #ef33b1, #ead6ee);
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>我的音乐播放器</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 200;
+      font-family: '微软雅黑 light';
+      color: #2c606d;
+    }
+
+    #txt {
+      display: none;
+    }
+
+    .photo {
+      overflow: hidden;
+      position: relative;
+      width: 320px;
+      height: 600px;
+      background-image: linear-gradient(180deg, #ead6ee, #a0f1ea);
+      background-attachment: fixed;
+      border-radius: 15px;
+    }
+
+    .title {
+      font-size: 30px;
+      text-align: center;
+      padding-top: 40px;
+    }
+
+    .singer {
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    .play {
+      width: 190px;
+      height: 190px;
+      margin: 30px auto 0;
+      background: url(./images/disc.png) no-repeat center/cover;
+      box-sizing: border-box;
+      padding: 11%;
+      position: relative;
+    }
+
+    .play img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      animation: music 6s linear infinite;
+      animation-play-state: paused;
+    }
+
+    .play span {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 40px;
+      height: 40px;
+      background: url(./images/stop.png) no-repeat center/cover;
+      transform: translate(-50%, -50%);
+    }
+
+    .play.stop img {
+      animation-play-state: running;
+    }
+
+    .play.stop span {
+      display: none;
+    }
+
+    .lrc {
+      height: 120px;
+      line-height: 1.5;
+      margin: 30px 20px 0;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .lrc .content {
+      transition: transform .3s;
+    }
+
+    .lrc .content p {
+      transition: all .3s;
+    }
+
+    .lrc .content p.active {
+      /* 字体渐变 */
+      /* background-image:-webkit-linear-gradient( 45deg , #ef33b1, #ead6ee);
             -webkit-background-clip: text;
             -webkit-text-fill-color:transparent; */
-            color: #22d59c;
-            font-weight: bold;
-        }
-		
-		@keyframes music {
-			0%{
-				transform: rotate(0deg);
-			}
-			100%{
-				transform: rotate(360deg);
-			}
-		}
-    </style>
+      color: #22d59c;
+      font-weight: bold;
+    }
+
+    @keyframes music {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <textarea name="" id="txt" cols="30" rows="10">
+  <textarea name="" id="txt" cols="30" rows="10">
         [00:00.10]济南济南 - 陈小熊
 		[00:00.20]词：陈洁修
 		[00:00.30]曲：陈洁修
@@ -152,97 +175,98 @@
 		[03:30.69]我想回家了
     </textarea>
 
-	<article class="photo">
-		<div class="title">济南济南</div>
-		<div class="singer">陈小熊</div>
-		<div class="play">
-            <img src="./images/img.jpg" alt="">
-            <span class="icon"></span>
-        </div>
-		<div class="lrc">
-			<div class="content"></div>
-		</div>
-	</article>
-	
-	<audio id="myMusic" src="images/济南济南在线试听_陈小熊_高音质歌曲_九酷音乐.mp3" loop>
-		您的浏览器不支持音频播放
-	</audio>
+  <article class="photo">
+    <div class="title">济南济南</div>
+    <div class="singer">陈小熊</div>
+    <div class="play">
+      <img src="./images/img.jpg" alt="">
+      <span class="icon"></span>
+    </div>
+    <div class="lrc">
+      <div class="content"></div>
+    </div>
+  </article>
 
-	<script>
-		let play = document.querySelector('.play');
-		let music = document.querySelector('#myMusic');
-		let txt = document.querySelector('#txt');
-		let content = document.querySelector('.content')
-        let bool = true;
-        let lrcHtml = '';
-		play.addEventListener('click',function(){
-			if (bool) {
-				music.play();
-                play.classList.add('stop');
-				bool = false;
-			}else{
-				music.pause();
-                play.classList.remove('stop');
-				bool = true;
-            }
-        })
-        
-        // 正则匹配时间、歌词
-        // let resTime = txt.value.match(/\[\d+:\d+.\d+]/g); //时间
-        // let resLrc = txt.value.match(/(([\u4E00-\u9FA5]|[a-zA-Z])( ?)(：?))+/g); //歌词
+  <audio id="myMusic" src="images/济南济南在线试听_陈小熊_高音质歌曲_九酷音乐.mp3" loop>
+    您的浏览器不支持音频播放
+  </audio>
 
-        // 原型上自定义去除空数组方法
-        Array.prototype.notempty = function () {
-            let arr = [];
-            this.map(function(item){
-                item = item.trim(); // 去除首尾空格
-                if(item != '' && item != undefined){
-                    arr.push(item);
-                }
-            })
-            return arr;
+  <script>
+    let play = document.querySelector('.play');
+    let music = document.querySelector('#myMusic');
+    let txt = document.querySelector('#txt');
+    let content = document.querySelector('.content')
+    let bool = true;
+    let lrcHtml = '';
+    play.addEventListener('click', function () {
+      if (bool) {
+        music.play();
+        play.classList.add('stop');
+        bool = false;
+      } else {
+        music.pause();
+        play.classList.remove('stop');
+        bool = true;
+      }
+    })
+
+    // 正则匹配时间、歌词
+    // let resTime = txt.value.match(/\[\d+:\d+.\d+]/g); //时间
+    // let resLrc = txt.value.match(/(([\u4E00-\u9FA5]|[a-zA-Z])( ?)(：?))+/g); //歌词
+
+    // 原型上自定义去除空数组方法
+    Array.prototype.notempty = function () {
+      let arr = [];
+      this.map(function (item) {
+        item = item.trim(); // 去除首尾空格
+        if (item != '' && item != undefined) {
+          arr.push(item);
         }
-        
-        let lrcArr = txt.value.split('[');
-        lrcArr = lrcArr.notempty(); // 去除空数组
-        lrcArr.forEach((item,index) => {
-            let lrcTime = item.split(']');
-            let timeArr = lrcTime[0].split(':');
-            let m = timeArr[0];
-            let s = timeArr[1].split('.')[0];
-            let time = m * 60 + s * 1;
-            lrcHtml += '<p class="lrc-p" data-time=' + time + '>' + lrcTime[1] + '</p>';
-        })
-        // 歌词
-        content.innerHTML = lrcHtml;
+      })
+      return arr;
+    }
 
-        let lrc_p = document.querySelectorAll('.lrc-p');
-        // timeupdate 播放位置发生改变事件
-        music.addEventListener('timeupdate', function (event) {
-            let curTime = parseInt(event.srcElement.currentTime); // 获取播放进度多少秒
-            lrc_p.forEach((item,index) => {
-                if(item.getAttribute('data-time') == curTime){ // 判断歌词是否等于播放时间
-                    lrc_p[index == 0 ? 0 : index-1].classList.remove('active'); // 删除上一个class
-                    item.classList.add('active');// 当前p添加class
-                    if(lrc_p[index].offsetTop >= 72){ // 判断距离顶部设置偏移量
-                        // 减去个行间距 居中
-                        content.style.cssText = 'transform: translateY(' + -(lrc_p[index].offsetTop - 48) + 'px)'
-                    }
-                }
-            })
+    let lrcArr = txt.value.split('[');
+    lrcArr = lrcArr.notempty(); // 去除空数组
+    lrcArr.forEach((item, index) => {
+      let lrcTime = item.split(']');
+      let timeArr = lrcTime[0].split(':');
+      let m = timeArr[0];
+      let s = timeArr[1].split('.')[0];
+      let time = m * 60 + s * 1;
+      lrcHtml += '<p class="lrc-p" data-time=' + time + '>' + lrcTime[1] + '</p>';
+    })
+    // 歌词
+    content.innerHTML = lrcHtml;
 
-            // music.paused // 判断当前音乐是否在播放或暂停
-            if (music.paused) {
-                console.log('暂停');
-            }else{
-                console.log("播放");
-            }
+    let lrc_p = document.querySelectorAll('.lrc-p');
+    // timeupdate 播放位置发生改变事件
+    music.addEventListener('timeupdate', function (event) {
+      let curTime = parseInt(event.srcElement.currentTime); // 获取播放进度多少秒
+      lrc_p.forEach((item, index) => {
+        if (item.getAttribute('data-time') == curTime) { // 判断歌词是否等于播放时间
+          lrc_p[index == 0 ? 0 : index - 1].classList.remove('active'); // 删除上一个class
+          item.classList.add('active');// 当前p添加class
+          if (lrc_p[index].offsetTop >= 72) { // 判断距离顶部设置偏移量
+            // 减去个行间距 居中
+            content.style.cssText = 'transform: translateY(' + -(lrc_p[index].offsetTop - 48) + 'px)'
+          }
+        }
+      })
 
-        })
+      // music.paused // 判断当前音乐是否在播放或暂停
+      if (music.paused) {
+        console.log('暂停');
+      } else {
+        console.log("播放");
+      }
+
+    })
 
         // 音量调节
 
-	</script>
+  </script>
 
 </body>
+
 </html>

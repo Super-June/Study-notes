@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {padding: 0;margin: 0;box-sizing: border-box;}
+    html,body {height: 100%;}
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <script>
+    window.onload = function () {
+      let canvas = document.getElementById('canvas')
+
+      //画布宽高
+      canvas.width = document.body.offsetWidth
+      canvas.height = document.body.offsetHeight
+      // 创建 2d 画板
+      let context = canvas.getContext('2d')
+      // 线条宽度
+      context.lineWidth = 2
+      // ============= 画一个带线条的箭头 ===============
+      context.beginPath()
+      context.moveTo( 10, 50)
+      context.lineTo( 80, 50)
+      context.lineTo( 80, 10)
+      context.lineTo( 130, 65)
+      context.lineTo( 80, 120)
+      context.lineTo( 80, 80)
+      context.lineTo( 10, 80)
+      // 填充颜色
+      context.fillStyle = 'yellow'
+      // 填充
+      context.fill()
+      // 闭合
+      context.closePath()
+      // 画线颜色
+      context.strokeStyle = 'blue'
+      // 画线
+      context.stroke()
+
+      // ========== 绘制圆 ========
+      context.beginPath()
+      context.arc( 220, 70, 50, 0, Math.PI, false)
+      context.fill()
+      context.closePath()
+      context.stroke()
+
+      // =========== 绘制圆弧 ===========
+      context.beginPath()
+      context.moveTo( 350, 10)
+      context.arcTo( 380, 100, 320, 100, 50 )
+      context.stroke()
+
+    }
+  </script>
+</body>
+</html>

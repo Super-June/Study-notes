@@ -70,10 +70,19 @@
               <van-icon name="arrow" />
             </router-link>
           </div>
-          <div class="newMusicList"></div>
+          <div class="newMusicList">
+            <p v-for="item in newmusicList" :key="item.id">
+              {{ item.name }}
+            </p>
+          </div>
         </div>
       </van-tab>
       <van-tab title="歌单" name="song">
+        <audio
+          src="http://m7.music.126.net/20200821222006/b7f949d88293a4f7c7effb9d1b43e639/ymusic/obj/w5zDlMODwrDDiGjCn8Ky/3673665182/73fa/41b6/3d37/f12b346848ee61691c1aeb59eb3b6d75.mp3"
+          autoplay
+          style="display: block !important;"
+        ></audio>
         歌单
       </van-tab>
       <van-tab title="主播电台" name="radio">
@@ -144,6 +153,7 @@ export default {
     async getNewMusicList() {
       const { data: res } = await this.$http.get('/personalized/newsong')
       if (res.code !== 200) return this.$notify('推荐新音乐获取失败')
+      console.log(res)
       this.newmusicList = res.result
     }
   }

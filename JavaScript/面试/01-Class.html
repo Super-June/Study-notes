@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Class类</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Class类</title>
 </head>
+
 <body>
-    <div class="wrap"></div>
-    <script>
-        // 父类
-        class People {
-            constructor(name) {
-                this.name = name
-            }
-            eat(){
-                console.log(`这个人的名字叫 ${this.name}`);
-            }
-        }
-        // 学生子类
-        class Student extends People { // 通过 extends 继承 People
-            constructor(name, number) {
-                super(name) // super
-                this.number = number
-            }
-            sayHi(){
-                console.log(`姓名: ${this.name}，学号: ${this.number}`);
-            }
-        }
-        // 老师子类
-        class Teacher extends People {
-            constructor(name, major) {
-                super(name)
-                this.major = major
-            }
-            teach() {
-                console.log(`姓名: ${this.name}，教授的科目: ${this.major}`);
-            }
-        }
+  <div class="wrap"></div>
+  <script>
+    // 父类
+    class People {
+      constructor(name) {
+        this.name = name
+      }
+      eat() {
+        console.log(`这个人的名字叫 ${this.name}`);
+      }
+    }
+    // 学生子类
+    class Student extends People { // 通过 extends 继承 People
+      constructor(name, number) {
+        super(name) // super
+        this.number = number
+      }
+      sayHi() {
+        console.log(`姓名: ${this.name}，学号: ${this.number}`);
+      }
+    }
+    // 老师子类
+    class Teacher extends People {
+      constructor(name, major) {
+        super(name)
+        this.major = major
+      }
+      teach() {
+        console.log(`姓名: ${this.name}，教授的科目: ${this.major}`);
+      }
+    }
 
-        let xialuo = new Student('夏洛','00001');
-        console.log(xialuo.name);
-        xialuo.eat();
-        xialuo.sayHi();
+    let xialuo = new Student('夏洛', '00001');
+    console.log(xialuo.name);
+    xialuo.eat();
+    xialuo.sayHi();
 
-        let wangT = new Teacher('王老师','语文');
-        wangT.eat();
-        wangT.teach();
-    </script>
+    let wangT = new Teacher('王老师', '语文');
+    wangT.eat();
+    wangT.teach();
+  </script>
 </body>
+
 </html>

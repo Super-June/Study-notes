@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *{padding: 0;margin: 0;}
+    body{
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    canvas{background-color: #ddd;}
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="140" height="250">
+    您的浏览器不支持canvas, 请你升级您的浏览器。
+  </canvas>
+  <script>
+    let canvas = document.getElementById('canvas')
+    // 获取 2d 上下文对象
+    let ctx = canvas.getContext('2d')
+    // 绘制正方形一
+    ctx.fillStyle = 'rgb( 200, 0, 0)'
+    ctx.fillRect( 10, 10, 55, 50)
+    // 绘制正方形二
+    ctx.fillStyle = 'rgba( 0, 0, 200, .5)'
+    ctx.fillRect( 30, 30, 55, 50)
+    // 绘制矩形边框
+    ctx.strokeStyle = 'rgb( 0, 0, 200)'
+    ctx.strokeRect( 10, 70, 55, 50)
+    // 清除指定区域
+    ctx.clearRect( 12, 12, 30, 30)
+
+    // 绘制线段
+    ctx.beginPath() // 新建一条path
+    ctx.moveTo( 10, 130)
+    ctx.lineTo( 80, 180)
+    ctx.lineTo( 80, 130)
+    ctx.closePath()
+    ctx.stroke() // 描边
+
+    // 绘制填充三角形
+    ctx.beginPath()
+    ctx.moveTo( 10, 180)
+    ctx.lineTo( 81, 181)
+    ctx.lineTo( 10, 131)
+    ctx.fill()
+
+    // 绘制圆弧
+    ctx.beginPath()
+    ctx.arc( 105, 110, 30, 2, Math.PI, false)
+    ctx.stroke()
+
+  </script>
+</body>
+</html>

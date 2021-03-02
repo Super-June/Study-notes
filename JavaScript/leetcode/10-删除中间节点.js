@@ -7,7 +7,7 @@
 */
 
 var deleteNode = function (node) {
-    
+  
 };
 
 deleteNode([4, 5, 1, 9]);

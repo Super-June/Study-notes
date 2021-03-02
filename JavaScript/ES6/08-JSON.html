@@ -2,32 +2,32 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON</title>
 </head>
 
 <body>
-    <script>
-        // encodeURIComponent() 函数可把字符串作为 URI 组件进行编码。
-        // JSON.stringify() 将对象或者数组转换为一个JSON字符串
-        let json = { a: 13, b: 15 };
-        let str = "https://baidu.com/path/user?data=" + encodeURIComponent(JSON.stringify(json));
+  <script>
+    // encodeURIComponent() 函数可把字符串作为 URI 组件进行编码。
+    // JSON.stringify() 将对象或者数组转换为一个JSON字符串
+    let json = { a: 13, b: 15 };
+    let str = "https://baidu.com/path/user?data=" + encodeURIComponent(JSON.stringify(json));
 
-        // JSON.parse()  将字符串转换成对象
-        let str1 = '{"a": 12, "b": 15, "c": "abc"}';
-        let json1 = JSON.parse(str1);
+    // JSON.parse()  将字符串转换成对象
+    let str1 = '{"a": 12, "b": 15, "c": "abc"}';
+    let json1 = JSON.parse(str1);
 
-        // 简写
-        let a = 13;
-        let json2 = {
-            a, // a: a 简写 a 
-            show(){ //show: function(){} 简写show(){}
-                alert(this.a)
-            }
-        }
+    // 简写
+    let a = 13;
+    let json2 = {
+      a, // a: a 简写 a 
+      show() { //show: function(){} 简写show(){}
+        alert(this.a)
+      }
+    }
 
-    </script>
+  </script>
 </body>
 
 </html>

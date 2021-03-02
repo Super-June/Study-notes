@@ -1,68 +1,71 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>数组</title>
-	</head>
-	<body>
-		<script type="text/javascript">
-			// map (映射)
-			let arr = [12, 5, 8];
-			let result = arr.map(item => item * 2)
-			console.log(result); // 24 10 16
 
-			{
-				let score = [19, 85, 99, 25, 90];
-				let result = score.map(item => item >= 60 ? '及格' : '不及格');
-				console.log(result); // ["不及格", "及格", "及格", "不及格", "及格"]
-			}
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>数组</title>
+</head>
 
-			// reduce (汇总)
-			{
-				let arr = [12, 69, 40, 33];
-				// 求和
-				let result = arr.reduce((x, y) => {
-					return x + y;
-				})
-				console.log(`求和：${result}`); // 求和：154
-				
-				// 平均数
-				let result1 = arr.reduce((x, y, index) => {
-					if(index != arr.length-1){
-						return x + y;
-					}
-					return (x + y)/arr.length;
-				});
-				console.log(`平均数：${result1}`); // 平均数：38.5
-			}
-			
-			// filter (过滤器)
-			{
-				let arr = [19, 85, 99, 25, 90, 60];
-				let result = arr.filter( item => {
-					return item >= 60; // 将大于等于60的过滤出
-				})
-				console.log(result); // [85, 99, 90, 60]
-				
-				let result1 = arr.filter( item => {
-					return item%3 === 0; // 取出能被3整除的
-				})
-				console.log(result1); // [99, 90, 60]
-				
-				let obj = [
-					{title: '语文',res: 70},
-					{title: '数学',res: 54},
-					{title: '英语',res: 63}
-				]
-				let result2 = obj.filter( item => {
-					return item.res >= 60; // 取出及格的科目
-				})
-				console.log(result2);
-			}
-			
+<body>
+  <script type="text/javascript">
+    // map (映射)
+    let arr = [12, 5, 8];
+    let result = arr.map(item => item * 2)
+    console.log(result); // 24 10 16
+
+    {
+      let score = [19, 85, 99, 25, 90];
+      let result = score.map(item => item >= 60 ? '及格' : '不及格');
+      console.log(result); // ["不及格", "及格", "及格", "不及格", "及格"]
+    }
+
+    // reduce (汇总)
+    {
+      let arr = [12, 69, 40, 33];
+      // 求和
+      let result = arr.reduce((x, y) => {
+        return x + y;
+      })
+      console.log(`求和：${result}`); // 求和：154
+
+      // 平均数
+      let result1 = arr.reduce((x, y, index) => {
+        if (index != arr.length - 1) {
+          return x + y;
+        }
+        return (x + y) / arr.length;
+      });
+      console.log(`平均数：${result1}`); // 平均数：38.5
+    }
+
+    // filter (过滤器)
+    {
+      let arr = [19, 85, 99, 25, 90, 60];
+      let result = arr.filter(item => {
+        return item >= 60; // 将大于等于60的过滤出
+      })
+      console.log(result); // [85, 99, 90, 60]
+
+      let result1 = arr.filter(item => {
+        return item % 3 === 0; // 取出能被3整除的
+      })
+      console.log(result1); // [99, 90, 60]
+
+      let obj = [
+        { title: '语文', res: 70 },
+        { title: '数学', res: 54 },
+        { title: '英语', res: 63 }
+      ]
+      let result2 = obj.filter(item => {
+        return item.res >= 60; // 取出及格的科目
+      })
+      console.log(result2);
+    }
+
 			// forEach
-			
-		</script>
-	</body>
+
+  </script>
+</body>
+
 </html>

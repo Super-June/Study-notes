@@ -1,32 +1,35 @@
 import Vue from 'vue'
 import {
-    Input,
-    Form,
-    FormItem,
-    Button,
-    Message,
-    Container,
-    Header,
-    Aside,
-    Main,
-    Menu,
-    Submenu,
-    MenuItem,
-    Loading,
-    Breadcrumb,
-    BreadcrumbItem,
-    Card,
-    Row,
-    Col,
-    Table,
-    TableColumn,
-    Switch,
-    Tooltip,
-    Pagination,
-    Dialog,
-    MessageBox,
-    Tag,
-    Tree
+  Input,
+  Form,
+  FormItem,
+  Button,
+  Message,
+  Container,
+  Header,
+  Aside,
+  Main,
+  Menu,
+  Submenu,
+  MenuItem,
+  Loading,
+  Breadcrumb,
+  BreadcrumbItem,
+  Card,
+  Row,
+  Col,
+  Table,
+  TableColumn,
+  Switch,
+  Tooltip,
+  Pagination,
+  Dialog,
+  MessageBox,
+  Tag,
+  Tree,
+  Select,
+  Option,
+  Cascader
 } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
@@ -55,6 +58,9 @@ Vue.use(Pagination)
 Vue.use(Dialog)
 Vue.use(Tag)
 Vue.use(Tree)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(Cascader)
 
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
